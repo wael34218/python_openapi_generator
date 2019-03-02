@@ -1,0 +1,202 @@
+info:
+  description: This is a testing description
+  title: Test
+  version: 0.0.1
+openapi: 3.0.1
+paths:
+  /api/planets/?page=2:
+    GET:
+      description: Get this from docstring
+      parameters:
+      - example: '2'
+        in: query
+        name: page
+        schema:
+          type: string
+      - example: dcf622fd9e3a0550a7018ca81efae5edd1551533599
+        in: cookie
+        name: __cfduid
+        schema:
+          type: string
+      requestBody: {}
+      responses:
+        200:
+          content:
+            application/json:
+              example:
+                count: 61
+                next: https://swapi.co/api/planets/?page=3
+                previous: https://swapi.co/api/planets/?page=1
+                results:
+                - climate: temperate, arid, windy
+                  created: '2014-12-10T12:49:01.491000Z'
+                  diameter: '12900'
+                  edited: '2014-12-20T20:58:18.439000Z'
+                  films:
+                  - https://swapi.co/api/films/6/
+                  gravity: 1 standard
+                  name: Utapau
+                  orbital_period: '351'
+                  population: '95000000'
+                  residents:
+                  - https://swapi.co/api/people/83/
+                  rotation_period: '27'
+                  surface_water: '0.9'
+                  terrain: scrublands, savanna, canyons, sinkholes
+                  url: https://swapi.co/api/planets/12/
+                - climate: hot
+                  created: '2014-12-10T12:50:16.526000Z'
+                  diameter: '4200'
+                  edited: '2014-12-20T20:58:18.440000Z'
+                  films:
+                  - https://swapi.co/api/films/6/
+                  gravity: 1 standard
+                  name: Mustafar
+                  orbital_period: '412'
+                  population: '20000'
+                  residents: []
+                  rotation_period: '36'
+                  surface_water: '0'
+                  terrain: volcanoes, lava rivers, mountains, caves
+                  url: https://swapi.co/api/planets/13/
+                - climate: tropical
+                  created: '2014-12-10T13:32:00.124000Z'
+                  diameter: '12765'
+                  edited: '2014-12-20T20:58:18.442000Z'
+                  films:
+                  - https://swapi.co/api/films/6/
+                  gravity: 1 standard
+                  name: Kashyyyk
+                  orbital_period: '381'
+                  population: '45000000'
+                  residents:
+                  - https://swapi.co/api/people/13/
+                  - https://swapi.co/api/people/80/
+                  rotation_period: '26'
+                  surface_water: '60'
+                  terrain: jungle, forests, lakes, rivers
+                  url: https://swapi.co/api/planets/14/
+                - climate: 'artificial temperate '
+                  created: '2014-12-10T13:33:46.405000Z'
+                  diameter: '0'
+                  edited: '2014-12-20T20:58:18.444000Z'
+                  films:
+                  - https://swapi.co/api/films/6/
+                  gravity: 0.56 standard
+                  name: Polis Massa
+                  orbital_period: '590'
+                  population: '1000000'
+                  residents: []
+                  rotation_period: '24'
+                  surface_water: '0'
+                  terrain: airless asteroid
+                  url: https://swapi.co/api/planets/15/
+                - climate: frigid
+                  created: '2014-12-10T13:43:39.139000Z'
+                  diameter: '10088'
+                  edited: '2014-12-20T20:58:18.446000Z'
+                  films:
+                  - https://swapi.co/api/films/6/
+                  gravity: 1 standard
+                  name: Mygeeto
+                  orbital_period: '167'
+                  population: '19000000'
+                  residents: []
+                  rotation_period: '12'
+                  surface_water: unknown
+                  terrain: glaciers, mountains, ice canyons
+                  url: https://swapi.co/api/planets/16/
+                - climate: hot, humid
+                  created: '2014-12-10T13:44:50.397000Z'
+                  diameter: '9100'
+                  edited: '2014-12-20T20:58:18.447000Z'
+                  films:
+                  - https://swapi.co/api/films/6/
+                  gravity: 0.75 standard
+                  name: Felucia
+                  orbital_period: '231'
+                  population: '8500000'
+                  residents: []
+                  rotation_period: '34'
+                  surface_water: unknown
+                  terrain: fungus forests
+                  url: https://swapi.co/api/planets/17/
+                - climate: temperate, moist
+                  created: '2014-12-10T13:46:28.704000Z'
+                  diameter: '0'
+                  edited: '2014-12-20T20:58:18.449000Z'
+                  films:
+                  - https://swapi.co/api/films/6/
+                  gravity: 1 standard
+                  name: Cato Neimoidia
+                  orbital_period: '278'
+                  population: '10000000'
+                  residents:
+                  - https://swapi.co/api/people/33/
+                  rotation_period: '25'
+                  surface_water: unknown
+                  terrain: mountains, fields, forests, rock arches
+                  url: https://swapi.co/api/planets/18/
+                - climate: hot
+                  created: '2014-12-10T13:47:46.874000Z'
+                  diameter: '14920'
+                  edited: '2014-12-20T20:58:18.450000Z'
+                  films:
+                  - https://swapi.co/api/films/6/
+                  gravity: unknown
+                  name: Saleucami
+                  orbital_period: '392'
+                  population: '1400000000'
+                  residents: []
+                  rotation_period: '26'
+                  surface_water: unknown
+                  terrain: caves, desert, mountains, volcanoes
+                  url: https://swapi.co/api/planets/19/
+                - climate: temperate
+                  created: '2014-12-10T16:16:26.566000Z'
+                  diameter: '0'
+                  edited: '2014-12-20T20:58:18.452000Z'
+                  films: []
+                  gravity: 1 standard
+                  name: Stewjon
+                  orbital_period: unknown
+                  population: unknown
+                  residents:
+                  - https://swapi.co/api/people/10/
+                  rotation_period: unknown
+                  surface_water: unknown
+                  terrain: grass
+                  url: https://swapi.co/api/planets/20/
+                - climate: polluted
+                  created: '2014-12-10T16:26:54.384000Z'
+                  diameter: '13490'
+                  edited: '2014-12-20T20:58:18.454000Z'
+                  films: []
+                  gravity: 1 standard
+                  name: Eriadu
+                  orbital_period: '360'
+                  population: '22000000000'
+                  residents:
+                  - https://swapi.co/api/people/12/
+                  rotation_period: '24'
+                  surface_water: unknown
+                  terrain: cityscape
+                  url: https://swapi.co/api/planets/21/
+              schema:
+                properties:
+                  count:
+                    type: integer
+                  next:
+                    type: string
+                  previous:
+                    type: string
+                  results:
+                    type: array
+                type: object
+          description: Get this from docstring
+      servers:
+      - https://swapi.co
+    servers:
+    - https://swapi.co
+servers:
+- https://swapi.co
