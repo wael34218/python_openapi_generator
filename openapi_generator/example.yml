@@ -12,7 +12,7 @@ paths:
         name: page
         schema:
           type: string
-      - example: d512bbcc5a2e614742d1dd83d529a85301551541700
+      - example: d915a5c17971df6410aa38da49a98cb181551561088
         in: cookie
         name: __cfduid
         schema:

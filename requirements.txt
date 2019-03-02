@@ -1,0 +1,4 @@
+pyyaml
+openapi-spec-validator
+requests
+pyOpenSSL
