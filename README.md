@@ -8,13 +8,14 @@ I was wondering why nobody has yet exploited this gap in a very lucrative market
 
 ## Installation
 
-1. Clone this repository
-2. `pip install -r requirements.txt`
+```
+pip install git+git://github.com/wael34218/python_openapi_generator
+```
 
 ## Generate your API using simple script
 
 ```
-from openapi_generator import OpenapiGenerator
+from openapi_generator.openapi_generator import OpenapiGenerator
 import requests
 
 # Step 1: Create an instance of the generator
