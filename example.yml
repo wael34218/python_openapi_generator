@@ -1,26 +1,24 @@
 info:
   description: This is a testing description
-  title: Test
+  title: Title
   version: 0.0.1
 openapi: 3.0.1
 paths:
-  /api/planets/?page=2:
-    GET:
-      description: Get this from docstring
+  /api/planets/:
+    get:
       parameters:
       - example: '2'
         in: query
         name: page
         schema:
           type: string
-      - example: dcf622fd9e3a0550a7018ca81efae5edd1551533599
+      - example: d512bbcc5a2e614742d1dd83d529a85301551541700
         in: cookie
         name: __cfduid
         schema:
           type: string
-      requestBody: {}
       responses:
-        200:
+        '200':
           content:
             application/json:
               example:
@@ -194,9 +192,6 @@ paths:
                     type: array
                 type: object
           description: Get this from docstring
-      servers:
-      - https://swapi.co
-    servers:
-    - https://swapi.co
 servers:
-- https://swapi.co
+- description: Path to server
+  url: https://swapi.co

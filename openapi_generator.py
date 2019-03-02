@@ -15,21 +15,32 @@ class OpenapiGenerator():
         self.configs = {
             "openapi": "3.0.1",
             "info": {"title": title, "description": description, "version": version},
-            "servers": ["https://swapi.co"]
+            "servers": [
+                {"url": "https://swapi.co", "description": "Path to server"}
+            ]
         }
         self.paths = {}
 
-    def add_response(self, response):
-        self.paths[response.request.path_url] = {
-            response.request.method: {
-                'description': "Get this from docstring",
-                'parameters': self._get_parameters(response),
-                'requestBody': self._get_request_body(response),
-                'responses': self._get_response(response),
-                'servers': [response.request.url.replace(response.request.path_url, "")]
-            },
-            'servers': [response.request.url.replace(response.request.path_url, "")]
-        }
+    def add_response(self, response, description=""):
+        parsed_url = urllib.parse.urlparse(response.request.url)
+        path_object = {response.request.method.lower(): {}}
+        parameters = self._get_parameters(response)
+        request_body = self._get_request_body(response)
+        responses = self._get_response(response)
+
+        if description:
+            path_object[response.request.method.lower()]['description'] = description
+
+        if parameters:
+            path_object[response.request.method.lower()]['parameters'] = parameters
+
+        if request_body:
+            path_object[response.request.method.lower()]['requestBody'] = request_body
+
+        if responses:
+            path_object[response.request.method.lower()]['responses'] = responses
+
+        self.paths[parsed_url.path] = path_object
         self.configs["paths"] = self.paths
 
     def export(self, filename):
@@ -55,11 +66,13 @@ class OpenapiGenerator():
                     }
                 except ValueError:
                     print("invalid json passed")
+
         return request_body
 
     def _get_response(self, response):
+        status = "{}".format(response.status_code)
         return {
-            response.status_code: {
+            status: {
                 'description': 'Get this from docstring',
                 'content': {
                     response.headers['Content-Type']: {

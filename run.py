@@ -2,7 +2,7 @@ from openapi_generator import OpenapiGenerator
 import requests
 
 # Step 1: Create an instance of the generator
-gen = OpenapiGenerator("Test", "This is a testing description", "0.0.1")
+gen = OpenapiGenerator("Title", "This is a testing description", "0.0.1")
 
 # Step 2: Add all responses
 response = requests.get("https://swapi.co/api/planets/", params={"page": 2})
