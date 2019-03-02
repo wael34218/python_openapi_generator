@@ -6,6 +6,11 @@ I searched long and hard for a library that generates documentation them without
 After long search I found 0 libraries that does that.
 I was wondering why nobody has yet exploited this gap in a very lucrative market, wonder no longer. Help is at hand.
 
+## Installation
+
+1. Clone this repository
+2. `pip install -r requirements.txt`
+
 ## Generate your API using simple script
 
 ```
