@@ -4,15 +4,237 @@ info:
   version: 0.0.1
 openapi: 3.0.1
 paths:
-  /api/planets/:
+  /api/people/:
     get:
       parameters:
-      - example: '2'
+      - example: '3'
         in: query
         name: page
         schema:
           type: string
-      - example: d915a5c17971df6410aa38da49a98cb181551561088
+      - example: da6bd88756db1bfafe0a131717cf0c4671551644292
+        in: cookie
+        name: __cfduid
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                count: 87
+                next: https://swapi.co/api/people/?page=4
+                previous: https://swapi.co/api/people/?page=2
+                results:
+                - birth_year: 31.5BBY
+                  created: '2014-12-15T12:49:32.457000Z'
+                  edited: '2014-12-20T21:17:50.349000Z'
+                  eye_color: brown
+                  films:
+                  - https://swapi.co/api/films/2/
+                  - https://swapi.co/api/films/5/
+                  - https://swapi.co/api/films/3/
+                  gender: male
+                  hair_color: black
+                  height: '183'
+                  homeworld: https://swapi.co/api/planets/10/
+                  mass: '78.2'
+                  name: Boba Fett
+                  skin_color: fair
+                  species:
+                  - https://swapi.co/api/species/1/
+                  starships:
+                  - https://swapi.co/api/starships/21/
+                  url: https://swapi.co/api/people/22/
+                  vehicles: []
+                - birth_year: 15BBY
+                  created: '2014-12-15T12:51:10.076000Z'
+                  edited: '2014-12-20T21:17:50.351000Z'
+                  eye_color: red
+                  films:
+                  - https://swapi.co/api/films/2/
+                  gender: none
+                  hair_color: none
+                  height: '200'
+                  homeworld: https://swapi.co/api/planets/28/
+                  mass: '140'
+                  name: IG-88
+                  skin_color: metal
+                  species:
+                  - https://swapi.co/api/species/2/
+                  starships: []
+                  url: https://swapi.co/api/people/23/
+                  vehicles: []
+                - birth_year: 53BBY
+                  created: '2014-12-15T12:53:49.297000Z'
+                  edited: '2014-12-20T21:17:50.355000Z'
+                  eye_color: red
+                  films:
+                  - https://swapi.co/api/films/2/
+                  gender: male
+                  hair_color: none
+                  height: '190'
+                  homeworld: https://swapi.co/api/planets/29/
+                  mass: '113'
+                  name: Bossk
+                  skin_color: green
+                  species:
+                  - https://swapi.co/api/species/7/
+                  starships: []
+                  url: https://swapi.co/api/people/24/
+                  vehicles: []
+                - birth_year: 31BBY
+                  created: '2014-12-15T12:56:32.683000Z'
+                  edited: '2014-12-20T21:17:50.357000Z'
+                  eye_color: brown
+                  films:
+                  - https://swapi.co/api/films/2/
+                  - https://swapi.co/api/films/3/
+                  gender: male
+                  hair_color: black
+                  height: '177'
+                  homeworld: https://swapi.co/api/planets/30/
+                  mass: '79'
+                  name: Lando Calrissian
+                  skin_color: dark
+                  species:
+                  - https://swapi.co/api/species/1/
+                  starships:
+                  - https://swapi.co/api/starships/10/
+                  url: https://swapi.co/api/people/25/
+                  vehicles: []
+                - birth_year: 37BBY
+                  created: '2014-12-15T13:01:57.178000Z'
+                  edited: '2014-12-20T21:17:50.359000Z'
+                  eye_color: blue
+                  films:
+                  - https://swapi.co/api/films/2/
+                  gender: male
+                  hair_color: none
+                  height: '175'
+                  homeworld: https://swapi.co/api/planets/6/
+                  mass: '79'
+                  name: Lobot
+                  skin_color: light
+                  species:
+                  - https://swapi.co/api/species/1/
+                  starships: []
+                  url: https://swapi.co/api/people/26/
+                  vehicles: []
+                - birth_year: 41BBY
+                  created: '2014-12-18T11:07:50.584000Z'
+                  edited: '2014-12-20T21:17:50.362000Z'
+                  eye_color: orange
+                  films:
+                  - https://swapi.co/api/films/3/
+                  - https://swapi.co/api/films/7/
+                  gender: male
+                  hair_color: none
+                  height: '180'
+                  homeworld: https://swapi.co/api/planets/31/
+                  mass: '83'
+                  name: Ackbar
+                  skin_color: brown mottle
+                  species:
+                  - https://swapi.co/api/species/8/
+                  starships: []
+                  url: https://swapi.co/api/people/27/
+                  vehicles: []
+                - birth_year: 48BBY
+                  created: '2014-12-18T11:12:38.895000Z'
+                  edited: '2014-12-20T21:17:50.364000Z'
+                  eye_color: blue
+                  films:
+                  - https://swapi.co/api/films/3/
+                  gender: female
+                  hair_color: auburn
+                  height: '150'
+                  homeworld: https://swapi.co/api/planets/32/
+                  mass: unknown
+                  name: Mon Mothma
+                  skin_color: fair
+                  species:
+                  - https://swapi.co/api/species/1/
+                  starships: []
+                  url: https://swapi.co/api/people/28/
+                  vehicles: []
+                - birth_year: unknown
+                  created: '2014-12-18T11:16:33.020000Z'
+                  edited: '2014-12-20T21:17:50.367000Z'
+                  eye_color: brown
+                  films:
+                  - https://swapi.co/api/films/3/
+                  gender: male
+                  hair_color: brown
+                  height: unknown
+                  homeworld: https://swapi.co/api/planets/28/
+                  mass: unknown
+                  name: Arvel Crynyd
+                  skin_color: fair
+                  species:
+                  - https://swapi.co/api/species/1/
+                  starships:
+                  - https://swapi.co/api/starships/28/
+                  url: https://swapi.co/api/people/29/
+                  vehicles: []
+                - birth_year: 8BBY
+                  created: '2014-12-18T11:21:58.954000Z'
+                  edited: '2014-12-20T21:17:50.369000Z'
+                  eye_color: brown
+                  films:
+                  - https://swapi.co/api/films/3/
+                  gender: male
+                  hair_color: brown
+                  height: '88'
+                  homeworld: https://swapi.co/api/planets/7/
+                  mass: '20'
+                  name: Wicket Systri Warrick
+                  skin_color: brown
+                  species:
+                  - https://swapi.co/api/species/9/
+                  starships: []
+                  url: https://swapi.co/api/people/30/
+                  vehicles: []
+                - birth_year: unknown
+                  created: '2014-12-18T11:26:18.541000Z'
+                  edited: '2014-12-20T21:17:50.371000Z'
+                  eye_color: black
+                  films:
+                  - https://swapi.co/api/films/3/
+                  gender: male
+                  hair_color: none
+                  height: '160'
+                  homeworld: https://swapi.co/api/planets/33/
+                  mass: '68'
+                  name: Nien Nunb
+                  skin_color: grey
+                  species:
+                  - https://swapi.co/api/species/10/
+                  starships:
+                  - https://swapi.co/api/starships/10/
+                  url: https://swapi.co/api/people/31/
+                  vehicles: []
+              schema:
+                properties:
+                  count:
+                    type: integer
+                  next:
+                    type: string
+                  previous:
+                    type: string
+                  results:
+                    type: array
+                type: object
+          description: Get this from docstring
+  /api/planets/:
+    get:
+      parameters:
+      - example: '3'
+        in: query
+        name: page
+        schema:
+          type: string
+      - example: de929b8f3fb817b0b3571484c5ebb726e1551644291
         in: cookie
         name: __cfduid
         schema:
@@ -23,163 +245,168 @@ paths:
             application/json:
               example:
                 count: 61
-                next: https://swapi.co/api/planets/?page=3
-                previous: https://swapi.co/api/planets/?page=1
+                next: https://swapi.co/api/planets/?page=4
+                previous: https://swapi.co/api/planets/?page=2
                 results:
-                - climate: temperate, arid, windy
-                  created: '2014-12-10T12:49:01.491000Z'
-                  diameter: '12900'
-                  edited: '2014-12-20T20:58:18.439000Z'
-                  films:
-                  - https://swapi.co/api/films/6/
+                - climate: temperate
+                  created: '2014-12-10T16:49:12.453000Z'
+                  diameter: '11000'
+                  edited: '2014-12-20T20:58:18.456000Z'
+                  films: []
                   gravity: 1 standard
-                  name: Utapau
-                  orbital_period: '351'
-                  population: '95000000'
+                  name: Corellia
+                  orbital_period: '329'
+                  population: '3000000000'
                   residents:
-                  - https://swapi.co/api/people/83/
-                  rotation_period: '27'
-                  surface_water: '0.9'
-                  terrain: scrublands, savanna, canyons, sinkholes
-                  url: https://swapi.co/api/planets/12/
+                  - https://swapi.co/api/people/14/
+                  - https://swapi.co/api/people/18/
+                  rotation_period: '25'
+                  surface_water: '70'
+                  terrain: plains, urban, hills, forests
+                  url: https://swapi.co/api/planets/22/
                 - climate: hot
-                  created: '2014-12-10T12:50:16.526000Z'
-                  diameter: '4200'
-                  edited: '2014-12-20T20:58:18.440000Z'
-                  films:
-                  - https://swapi.co/api/films/6/
+                  created: '2014-12-10T17:03:28.110000Z'
+                  diameter: '7549'
+                  edited: '2014-12-20T20:58:18.458000Z'
+                  films: []
                   gravity: 1 standard
-                  name: Mustafar
-                  orbital_period: '412'
-                  population: '20000'
-                  residents: []
-                  rotation_period: '36'
-                  surface_water: '0'
-                  terrain: volcanoes, lava rivers, mountains, caves
-                  url: https://swapi.co/api/planets/13/
-                - climate: tropical
-                  created: '2014-12-10T13:32:00.124000Z'
-                  diameter: '12765'
-                  edited: '2014-12-20T20:58:18.442000Z'
-                  films:
-                  - https://swapi.co/api/films/6/
-                  gravity: 1 standard
-                  name: Kashyyyk
-                  orbital_period: '381'
-                  population: '45000000'
+                  name: Rodia
+                  orbital_period: '305'
+                  population: '1300000000'
                   residents:
-                  - https://swapi.co/api/people/13/
-                  - https://swapi.co/api/people/80/
-                  rotation_period: '26'
+                  - https://swapi.co/api/people/15/
+                  rotation_period: '29'
                   surface_water: '60'
-                  terrain: jungle, forests, lakes, rivers
-                  url: https://swapi.co/api/planets/14/
-                - climate: 'artificial temperate '
-                  created: '2014-12-10T13:33:46.405000Z'
-                  diameter: '0'
-                  edited: '2014-12-20T20:58:18.444000Z'
-                  films:
-                  - https://swapi.co/api/films/6/
-                  gravity: 0.56 standard
-                  name: Polis Massa
-                  orbital_period: '590'
-                  population: '1000000'
-                  residents: []
-                  rotation_period: '24'
-                  surface_water: '0'
-                  terrain: airless asteroid
-                  url: https://swapi.co/api/planets/15/
-                - climate: frigid
-                  created: '2014-12-10T13:43:39.139000Z'
-                  diameter: '10088'
-                  edited: '2014-12-20T20:58:18.446000Z'
-                  films:
-                  - https://swapi.co/api/films/6/
+                  terrain: jungles, oceans, urban, swamps
+                  url: https://swapi.co/api/planets/23/
+                - climate: temperate
+                  created: '2014-12-10T17:11:29.452000Z'
+                  diameter: '12150'
+                  edited: '2014-12-20T20:58:18.460000Z'
+                  films: []
                   gravity: 1 standard
-                  name: Mygeeto
-                  orbital_period: '167'
-                  population: '19000000'
-                  residents: []
-                  rotation_period: '12'
-                  surface_water: unknown
-                  terrain: glaciers, mountains, ice canyons
-                  url: https://swapi.co/api/planets/16/
-                - climate: hot, humid
-                  created: '2014-12-10T13:44:50.397000Z'
-                  diameter: '9100'
-                  edited: '2014-12-20T20:58:18.447000Z'
-                  films:
-                  - https://swapi.co/api/films/6/
-                  gravity: 0.75 standard
-                  name: Felucia
-                  orbital_period: '231'
-                  population: '8500000'
-                  residents: []
-                  rotation_period: '34'
-                  surface_water: unknown
-                  terrain: fungus forests
-                  url: https://swapi.co/api/planets/17/
-                - climate: temperate, moist
-                  created: '2014-12-10T13:46:28.704000Z'
-                  diameter: '0'
-                  edited: '2014-12-20T20:58:18.449000Z'
-                  films:
-                  - https://swapi.co/api/films/6/
-                  gravity: 1 standard
-                  name: Cato Neimoidia
-                  orbital_period: '278'
-                  population: '10000000'
+                  name: Nal Hutta
+                  orbital_period: '413'
+                  population: '7000000000'
                   residents:
-                  - https://swapi.co/api/people/33/
+                  - https://swapi.co/api/people/16/
+                  rotation_period: '87'
+                  surface_water: unknown
+                  terrain: urban, oceans, swamps, bogs
+                  url: https://swapi.co/api/planets/24/
+                - climate: temperate
+                  created: '2014-12-10T17:23:29.896000Z'
+                  diameter: '9830'
+                  edited: '2014-12-20T20:58:18.461000Z'
+                  films: []
+                  gravity: 1 standard
+                  name: Dantooine
+                  orbital_period: '378'
+                  population: '1000'
+                  residents: []
                   rotation_period: '25'
                   surface_water: unknown
-                  terrain: mountains, fields, forests, rock arches
-                  url: https://swapi.co/api/planets/18/
-                - climate: hot
-                  created: '2014-12-10T13:47:46.874000Z'
-                  diameter: '14920'
-                  edited: '2014-12-20T20:58:18.450000Z'
-                  films:
-                  - https://swapi.co/api/films/6/
+                  terrain: oceans, savannas, mountains, grasslands
+                  url: https://swapi.co/api/planets/25/
+                - climate: temperate
+                  created: '2014-12-12T11:16:55.078000Z'
+                  diameter: '6400'
+                  edited: '2014-12-20T20:58:18.463000Z'
+                  films: []
                   gravity: unknown
-                  name: Saleucami
-                  orbital_period: '392'
-                  population: '1400000000'
+                  name: Bestine IV
+                  orbital_period: '680'
+                  population: '62000000'
+                  residents:
+                  - https://swapi.co/api/people/19/
+                  rotation_period: '26'
+                  surface_water: '98'
+                  terrain: rocky islands, oceans
+                  url: https://swapi.co/api/planets/26/
+                - climate: temperate
+                  created: '2014-12-15T12:23:41.661000Z'
+                  diameter: '14050'
+                  edited: '2014-12-20T20:58:18.464000Z'
+                  films:
+                  - https://swapi.co/api/films/2/
+                  gravity: 1 standard
+                  name: Ord Mantell
+                  orbital_period: '334'
+                  population: '4000000000'
                   residents: []
                   rotation_period: '26'
-                  surface_water: unknown
-                  terrain: caves, desert, mountains, volcanoes
-                  url: https://swapi.co/api/planets/19/
-                - climate: temperate
-                  created: '2014-12-10T16:16:26.566000Z'
+                  surface_water: '10'
+                  terrain: plains, seas, mesas
+                  url: https://swapi.co/api/planets/27/
+                - climate: unknown
+                  created: '2014-12-15T12:25:59.569000Z'
                   diameter: '0'
-                  edited: '2014-12-20T20:58:18.452000Z'
+                  edited: '2014-12-20T20:58:18.466000Z'
                   films: []
-                  gravity: 1 standard
-                  name: Stewjon
-                  orbital_period: unknown
+                  gravity: unknown
+                  name: unknown
+                  orbital_period: '0'
                   population: unknown
                   residents:
-                  - https://swapi.co/api/people/10/
-                  rotation_period: unknown
+                  - https://swapi.co/api/people/20/
+                  - https://swapi.co/api/people/23/
+                  - https://swapi.co/api/people/29/
+                  - https://swapi.co/api/people/32/
+                  - https://swapi.co/api/people/75/
+                  - https://swapi.co/api/people/84/
+                  - https://swapi.co/api/people/85/
+                  - https://swapi.co/api/people/86/
+                  - https://swapi.co/api/people/87/
+                  - https://swapi.co/api/people/88/
+                  rotation_period: '0'
                   surface_water: unknown
-                  terrain: grass
-                  url: https://swapi.co/api/planets/20/
-                - climate: polluted
-                  created: '2014-12-10T16:26:54.384000Z'
-                  diameter: '13490'
-                  edited: '2014-12-20T20:58:18.454000Z'
+                  terrain: unknown
+                  url: https://swapi.co/api/planets/28/
+                - climate: arid
+                  created: '2014-12-15T12:53:47.695000Z'
+                  diameter: '0'
+                  edited: '2014-12-20T20:58:18.468000Z'
+                  films: []
+                  gravity: 0.62 standard
+                  name: Trandosha
+                  orbital_period: '371'
+                  population: '42000000'
+                  residents:
+                  - https://swapi.co/api/people/24/
+                  rotation_period: '25'
+                  surface_water: unknown
+                  terrain: mountains, seas, grasslands, deserts
+                  url: https://swapi.co/api/planets/29/
+                - climate: arid
+                  created: '2014-12-15T12:56:31.121000Z'
+                  diameter: '0'
+                  edited: '2014-12-20T20:58:18.469000Z'
                   films: []
                   gravity: 1 standard
-                  name: Eriadu
-                  orbital_period: '360'
-                  population: '22000000000'
+                  name: Socorro
+                  orbital_period: '326'
+                  population: '300000000'
                   residents:
-                  - https://swapi.co/api/people/12/
-                  rotation_period: '24'
+                  - https://swapi.co/api/people/25/
+                  rotation_period: '20'
                   surface_water: unknown
-                  terrain: cityscape
-                  url: https://swapi.co/api/planets/21/
+                  terrain: deserts, mountains
+                  url: https://swapi.co/api/planets/30/
+                - climate: temperate
+                  created: '2014-12-18T11:07:01.792000Z'
+                  diameter: '11030'
+                  edited: '2014-12-20T20:58:18.471000Z'
+                  films: []
+                  gravity: '1'
+                  name: Mon Cala
+                  orbital_period: '398'
+                  population: '27000000000'
+                  residents:
+                  - https://swapi.co/api/people/27/
+                  rotation_period: '21'
+                  surface_water: '100'
+                  terrain: oceans, reefs, islands
+                  url: https://swapi.co/api/planets/31/
               schema:
                 properties:
                   count:
