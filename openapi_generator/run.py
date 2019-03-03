@@ -11,6 +11,9 @@ gen.add_response(response)
 response = requests.get("https://swapi.co/api/planets/", params={"page": 3})
 gen.add_response(response)
 
+response = requests.post("https://swapi.co/api/planets/", json={"page": 3})
+gen.add_response(response)
+
 response = requests.get("https://swapi.co/api/people/", params={"page": 3})
 gen.add_response(response)
 

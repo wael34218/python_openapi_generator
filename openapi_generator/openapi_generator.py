@@ -40,8 +40,17 @@ class OpenapiGenerator():
             path_object['responses'] = responses
 
         parsed_url = urllib.parse.urlparse(response.request.url)
-        path_object = {response.request.method.lower(): path_object}
-        self.paths[parsed_url.path] = path_object
+        if parsed_url.path in self.paths:
+            if "responses" in self.paths[parsed_url.path]:
+                k = list(path_object["responses"].keys())[0]
+                self.paths[parsed_url.path]["responses"][k] = path_object["responses"][k]
+            else:
+                self.paths[parsed_url.path]["responses"] = path_object["responses"]
+
+            if description:
+                self.paths[parsed_url.path]["description"] = description
+        else:
+            self.paths[parsed_url.path] = {response.request.method.lower(): path_object}
         self.configs["paths"] = self.paths
 
     def export(self, filename):
