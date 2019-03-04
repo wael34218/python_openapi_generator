@@ -45,17 +45,20 @@ class OpenapiGenerator():
         is missing in the first one.
         '''
         parsed_url = urllib.parse.urlparse(response.request.url)
+        method = response.request.method.lower()
+        status = "{}".format(response.status_code)
         if parsed_url.path in self.paths:
-            if "responses" in self.paths[parsed_url.path]:
-                k = list(path_object["responses"].keys())[0]
-                self.paths[parsed_url.path]["responses"][k] = path_object["responses"][k]
+            if method in self.paths[parsed_url.path]:
+                if status not in self.paths[parsed_url.path][method]["responses"]:
+                    status_response = path_object["responses"][status]
+                    self.paths[parsed_url.path][method]["responses"][status] = status_response
             else:
-                self.paths[parsed_url.path]["responses"] = path_object["responses"]
+                self.paths[parsed_url.path][method] = path_object
 
-            if "description" not in self.paths[parsed_url.path] and description:
-                self.paths[parsed_url.path]["description"] = description
+            if "description" not in self.paths[parsed_url.path][method] and description:
+                self.paths[parsed_url.path][method]["description"] = description
         else:
-            self.paths[parsed_url.path] = {response.request.method.lower(): path_object}
+            self.paths[parsed_url.path] = {method: path_object}
         self.configs["paths"] = self.paths
 
     def export(self, filename):
