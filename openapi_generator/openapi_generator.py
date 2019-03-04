@@ -39,6 +39,11 @@ class OpenapiGenerator():
         if responses:
             path_object['responses'] = responses
 
+        '''
+        Merging paths multiple path objects. Priority goes in chronological order first response
+        will make up the base of the documentation, later responses will augment and add what
+        is missing in the first one.
+        '''
         parsed_url = urllib.parse.urlparse(response.request.url)
         if parsed_url.path in self.paths:
             if "responses" in self.paths[parsed_url.path]:
@@ -47,7 +52,7 @@ class OpenapiGenerator():
             else:
                 self.paths[parsed_url.path]["responses"] = path_object["responses"]
 
-            if description:
+            if "description" not in self.paths[parsed_url.path] and description:
                 self.paths[parsed_url.path]["description"] = description
         else:
             self.paths[parsed_url.path] = {response.request.method.lower(): path_object}
@@ -59,6 +64,7 @@ class OpenapiGenerator():
 
     @staticmethod
     def _get_request_body(response):
+        # TODO: Handle xml, plain text and other formats
         request_body = {}
         if response.request.body:
             if response.request.headers['Content-Type'] == 'application/json':
@@ -82,6 +88,7 @@ class OpenapiGenerator():
 
     @staticmethod
     def _get_response(response):
+        # TODO: Find a way to pass/get description for the response
         status = "{}".format(response.status_code)
         return {
             status: {
