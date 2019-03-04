@@ -78,10 +78,12 @@ class OpenapiGenerator():
                             'schema': {
                                 'type': 'object',
                                 'properties': {
-                                    k: {'type': OpenapiGenerator.types_map[v.__class__.__name__]}
+                                    k: {
+                                        'type': OpenapiGenerator.types_map[v.__class__.__name__],
+                                        'example': v
+                                        }
                                     for k, v in example.items()}
-                            },
-                            'example': {k: v for k, v in example.items()}
+                            }
                         }
                     }
                 except ValueError:
@@ -101,10 +103,12 @@ class OpenapiGenerator():
                         'schema': {
                             'type': 'object',
                             'properties': {
-                                k: {'type': OpenapiGenerator.types_map[v.__class__.__name__]}
+                                k: {
+                                    'type': OpenapiGenerator.types_map[v.__class__.__name__],
+                                    'example': v
+                                   }
                                 for k, v in response.json().items()}
-                        },
-                        'example': {k: v for k, v in response.json().items()}
+                        }
                     }
                 }
             }
