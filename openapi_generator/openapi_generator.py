@@ -45,46 +45,25 @@ class OpenapiGenerator():
         is missing in the first one.
         '''
         parsed_url = urllib.parse.urlparse(response.request.url)
+        method = response.request.method.lower()
+        status = "{}".format(response.status_code)
         if parsed_url.path in self.paths:
-            if "responses" in self.paths[parsed_url.path]:
-                k = list(path_object["responses"].keys())[0]
-                self.paths[parsed_url.path]["responses"][k] = path_object["responses"][k]
+            if method in self.paths[parsed_url.path]:
+                if status not in self.paths[parsed_url.path][method]["responses"]:
+                    status_response = path_object["responses"][status]
+                    self.paths[parsed_url.path][method]["responses"][status] = status_response
             else:
-                self.paths[parsed_url.path]["responses"] = path_object["responses"]
+                self.paths[parsed_url.path][method] = path_object
 
-            if "description" not in self.paths[parsed_url.path] and description:
-                self.paths[parsed_url.path]["description"] = description
+            if "description" not in self.paths[parsed_url.path][method] and description:
+                self.paths[parsed_url.path][method]["description"] = description
         else:
-            self.paths[parsed_url.path] = {response.request.method.lower(): path_object}
+            self.paths[parsed_url.path] = {method: path_object}
         self.configs["paths"] = self.paths
 
     def export(self, filename):
         with open(filename, "w") as output_file:
             output_file.write(yaml.dump(self.configs, default_flow_style=False))
-
-    @staticmethod
-    def _get_request_body(response):
-        # TODO: Handle xml, plain text and other formats
-        request_body = {}
-        if response.request.body:
-            if response.request.headers['Content-Type'] == 'application/json':
-                try:
-                    example = json.loads(response.request.body.decode('utf-8'))
-                    request_body['content'] = {
-                        'application/json': {
-                            'schema': {
-                                'type': 'object',
-                                'properties': {
-                                    k: {'type': OpenapiGenerator.types_map[v.__class__.__name__]}
-                                    for k, v in example.items()}
-                            },
-                            'example': {k: v for k, v in example.items()}
-                        }
-                    }
-                except ValueError:
-                    print("invalid json passed")
-
-        return request_body
 
     @staticmethod
     def _get_props(item, example=False):
@@ -99,6 +78,30 @@ class OpenapiGenerator():
         if OpenapiGenerator.types_map[item.__class__.__name__] == "object":
             props['properties'] = {k: OpenapiGenerator._get_props(v) for k, v in item.items()}
         return props
+
+    @staticmethod
+    def _get_request_body(response):
+        # TODO: Handle xml, plain text and other formats
+        request_body = {}
+        if response.request.body:
+            if response.request.headers['Content-Type'] == 'application/json':
+                try:
+                    example = json.loads(response.request.body.decode('utf-8'))
+                    request_body['content'] = {
+                        'application/json': {
+                            'schema': {
+                                'type': 'object',
+                                'properties': {
+                                    k: OpenapiGenerator._get_props(v, example=True)
+                                    for k, v in example.items()
+                                }
+                            }
+                        }
+                    }
+                except ValueError:
+                    print("invalid json passed")
+
+        return request_body
 
     @staticmethod
     def _get_response(response):
