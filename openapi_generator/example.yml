@@ -12,7 +12,7 @@ paths:
         name: page
         schema:
           type: string
-      - example: d78749c46a111ac1cbc3dbd5c9ef722131551645418
+      - example: dd797af1d8042faef2a88ba03aea2f9c01552664073
         in: cookie
         name: __cfduid
         schema:
@@ -223,6 +223,52 @@ paths:
                   previous:
                     type: string
                   results:
+                    items:
+                      oneOf:
+                        properties:
+                          birth_year:
+                            type: string
+                          created:
+                            type: string
+                          edited:
+                            type: string
+                          eye_color:
+                            type: string
+                          films:
+                            items:
+                              oneOf:
+                                type: string
+                            type: array
+                          gender:
+                            type: string
+                          hair_color:
+                            type: string
+                          height:
+                            type: string
+                          homeworld:
+                            type: string
+                          mass:
+                            type: string
+                          name:
+                            type: string
+                          skin_color:
+                            type: string
+                          species:
+                            items:
+                              oneOf:
+                                type: string
+                            type: array
+                          starships:
+                            items:
+                              oneOf:
+                                type: string
+                            type: array
+                          url:
+                            type: string
+                          vehicles:
+                            items: {}
+                            type: array
+                        type: object
                     type: array
                 type: object
           description: Get this from docstring
@@ -234,7 +280,7 @@ paths:
         name: page
         schema:
           type: string
-      - example: deaf3df950286a8e9e13ee52ca1474ecc1551645416
+      - example: d22b3be9d5ce1ecaa3ef9e6b818db72981552664071
         in: cookie
         name: __cfduid
         schema:
@@ -411,6 +457,44 @@ paths:
                   previous:
                     type: string
                   results:
+                    items:
+                      oneOf:
+                        properties:
+                          climate:
+                            type: string
+                          created:
+                            type: string
+                          diameter:
+                            type: string
+                          edited:
+                            type: string
+                          films:
+                            items:
+                              oneOf:
+                                type: string
+                            type: array
+                          gravity:
+                            type: string
+                          name:
+                            type: string
+                          orbital_period:
+                            type: string
+                          population:
+                            type: string
+                          residents:
+                            items:
+                              oneOf:
+                                type: string
+                            type: array
+                          rotation_period:
+                            type: string
+                          surface_water:
+                            type: string
+                          terrain:
+                            type: string
+                          url:
+                            type: string
+                        type: object
                     type: array
                 type: object
           description: Get this from docstring
@@ -591,6 +675,42 @@ paths:
                 previous:
                   type: string
                 results:
+                  items:
+                    oneOf:
+                      properties:
+                        climate:
+                          type: string
+                        created:
+                          type: string
+                        diameter:
+                          type: string
+                        edited:
+                          type: string
+                        films:
+                          items: {}
+                          type: array
+                        gravity:
+                          type: string
+                        name:
+                          type: string
+                        orbital_period:
+                          type: string
+                        population:
+                          type: string
+                        residents:
+                          items:
+                            oneOf:
+                              type: string
+                          type: array
+                        rotation_period:
+                          type: string
+                        surface_water:
+                          type: string
+                        terrain:
+                          type: string
+                        url:
+                          type: string
+                      type: object
                   type: array
               type: object
         description: Get this from docstring

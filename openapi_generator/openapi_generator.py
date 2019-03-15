@@ -87,6 +87,18 @@ class OpenapiGenerator():
         return request_body
 
     @staticmethod
+    def _get_props(item):
+        props = {'type': OpenapiGenerator.types_map[item.__class__.__name__]}
+        if OpenapiGenerator.types_map[item.__class__.__name__] == "array":
+            if len(item) > 0:
+                props['items'] = {"oneOf": OpenapiGenerator._get_props(item[0])}
+            else:
+                props['items'] = {}
+        if OpenapiGenerator.types_map[item.__class__.__name__] == "object":
+            props['properties'] = {k: OpenapiGenerator._get_props(v) for k, v in item.items()}
+        return props
+
+    @staticmethod
     def _get_response(response):
         # TODO: Find a way to pass/get description for the response
         status = "{}".format(response.status_code)
@@ -98,8 +110,9 @@ class OpenapiGenerator():
                         'schema': {
                             'type': 'object',
                             'properties': {
-                                k: {'type': OpenapiGenerator.types_map[v.__class__.__name__]}
-                                for k, v in response.json().items()}
+                                k: OpenapiGenerator._get_props(v)
+                                for k, v in response.json().items()
+                            }
                         },
                         'example': {k: v for k, v in response.json().items()}
                     }
