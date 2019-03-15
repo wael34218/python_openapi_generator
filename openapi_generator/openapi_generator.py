@@ -11,12 +11,12 @@ class OpenapiGenerator():
                  "list": "array",
                  "dict": "object"}
 
-    def __init__(self, title, description, version, server):
+    def __init__(self, title, description, version, server, server_description=None):
         self.configs = {
             "openapi": "3.0.1",
             "info": {"title": title, "description": description, "version": version},
             "servers": [
-                {"url": server, "description": "Path to server"}
+                {"url": server, "description": server_description}
             ]
         }
         self.paths = {}
@@ -66,6 +66,20 @@ class OpenapiGenerator():
             output_file.write(yaml.dump(self.configs, default_flow_style=False))
 
     @staticmethod
+    def _get_props(item, example=False):
+        props = {'type': OpenapiGenerator.types_map[item.__class__.__name__]}
+        if example:
+            props['example'] = item
+        if OpenapiGenerator.types_map[item.__class__.__name__] == "array":
+            if len(item) > 0:
+                props['items'] = {"oneOf": OpenapiGenerator._get_props(item[0])}
+            else:
+                props['items'] = {}
+        if OpenapiGenerator.types_map[item.__class__.__name__] == "object":
+            props['properties'] = {k: OpenapiGenerator._get_props(v) for k, v in item.items()}
+        return props
+
+    @staticmethod
     def _get_request_body(response):
         # TODO: Handle xml, plain text and other formats
         request_body = {}
@@ -78,11 +92,9 @@ class OpenapiGenerator():
                             'schema': {
                                 'type': 'object',
                                 'properties': {
-                                    k: {
-                                        'type': OpenapiGenerator.types_map[v.__class__.__name__],
-                                        'example': v
-                                        }
-                                    for k, v in example.items()}
+                                    k: OpenapiGenerator._get_props(v, example=True)
+                                    for k, v in example.items()
+                                }
                             }
                         }
                     }
@@ -103,11 +115,9 @@ class OpenapiGenerator():
                         'schema': {
                             'type': 'object',
                             'properties': {
-                                k: {
-                                    'type': OpenapiGenerator.types_map[v.__class__.__name__],
-                                    'example': v
-                                   }
-                                for k, v in response.json().items()}
+                                k: OpenapiGenerator._get_props(v, example=True)
+                                for k, v in response.json().items()
+                            }
                         }
                     }
                 }
