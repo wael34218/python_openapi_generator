@@ -11,7 +11,17 @@ class OpenapiGenerator():
                  "list": "array",
                  "dict": "object"}
 
-    def __init__(self, title, description, version, server, server_description=None):
+    def __init__(self, title, description, version, server, server_description=""):
+        """
+        Initialize the OpenAPI Generator
+
+        Parameters:
+            title (str): Title of the API documentation
+            description (str): A brief description about the entire service (API application)
+            version (str): Version of application
+            server (str): Server URL with root path
+            server_description (str): Description of the server staging/production, default: ""
+        """
         self.configs = {
             "openapi": "3.0.1",
             "info": {"title": title, "description": description, "version": version},
@@ -22,6 +32,13 @@ class OpenapiGenerator():
         self.paths = {}
 
     def add_response(self, response, description=""):
+        """
+        Augment current OpenAPI configuration with the passed request
+
+        Parameters:
+            response (Response): requests Response object.
+            description (str): A brief description about the API call
+        """
         path_object = {}
         parameters = self._get_parameters(response)
         request_body = self._get_request_body(response)
@@ -62,17 +79,34 @@ class OpenapiGenerator():
         self.configs["paths"] = self.paths
 
     def export(self, filename):
+        """
+        Export configuration into a yaml OpenAPI format
+
+        Parameters:
+            filename (str): Output file path.
+        """
         with open(filename, "w") as output_file:
             output_file.write(yaml.dump(self.configs, default_flow_style=False))
 
     @staticmethod
     def _get_props(item, example=False):
+        """
+        A recursive function that unfolds an item to its leaves and returns a dictionary describing
+        the item
+
+        Parameters:
+            item (any type of types_map): An object will be added to the openAPI
+            example (bool): Whether to add an example of the item
+
+        Returns:
+            props (dict): Object properties that describes item
+        """
         props = {'type': OpenapiGenerator.types_map[item.__class__.__name__]}
         if example:
             props['example'] = item
         if OpenapiGenerator.types_map[item.__class__.__name__] == "array":
             if len(item) > 0:
-                props['items'] = {"oneOf": OpenapiGenerator._get_props(item[0])}
+                props['items'] = {"oneOf": [OpenapiGenerator._get_props(item[0])]}
             else:
                 props['items'] = {}
         if OpenapiGenerator.types_map[item.__class__.__name__] == "object":
@@ -81,6 +115,15 @@ class OpenapiGenerator():
 
     @staticmethod
     def _get_request_body(response):
+        """
+
+
+        Parameters:
+            response (Response): requests Response object.
+
+        Returns:
+            request_body (dict): Object properties that describes the response
+        """
         # TODO: Handle xml, plain text and other formats
         request_body = {}
         if response.request.body:
@@ -105,6 +148,16 @@ class OpenapiGenerator():
 
     @staticmethod
     def _get_response(response):
+        """
+        Structure response object compatible with OpenAPI documentation
+
+        Parameters:
+            response (Response): requests Response object.
+
+        Returns:
+            response_body (dict): Object properties that describes the response
+        """
+
         # TODO: Find a way to pass/get description for the response
         status = "{}".format(response.status_code)
         return {
@@ -126,6 +179,15 @@ class OpenapiGenerator():
 
     @staticmethod
     def _get_parameters(response):
+        """
+        Structure parameters object compatible with OpenAPI documentation
+
+        Parameters:
+            response (Response): requests Response object.
+
+        Returns:
+            response_body (dict): Object properties that describes API parameters
+        """
         # Adding parameters [query, headers, cookie].
         # TODO: implement [path] parameters.
         parameters = []

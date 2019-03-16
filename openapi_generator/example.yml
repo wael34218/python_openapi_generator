@@ -12,7 +12,7 @@ paths:
         name: page
         schema:
           type: string
-      - example: d21cddeaffe99348541807733de1a9c791552665088
+      - example: d786722db1516738161261318b0c2eeb51552759668
         in: cookie
         name: __cfduid
         schema:
@@ -224,7 +224,7 @@ paths:
                       vehicles: []
                     items:
                       oneOf:
-                        properties:
+                      - properties:
                           birth_year:
                             type: string
                           created:
@@ -236,7 +236,7 @@ paths:
                           films:
                             items:
                               oneOf:
-                                type: string
+                              - type: string
                             type: array
                           gender:
                             type: string
@@ -255,12 +255,12 @@ paths:
                           species:
                             items:
                               oneOf:
-                                type: string
+                              - type: string
                             type: array
                           starships:
                             items:
                               oneOf:
-                                type: string
+                              - type: string
                             type: array
                           url:
                             type: string
@@ -279,7 +279,7 @@ paths:
         name: page
         schema:
           type: string
-      - example: d0ec8c2dbf2ab3801c49d9b760361d13a1552665083
+      - example: d288b59db6a647729e9e9c52bec4407f21552759664
         in: cookie
         name: __cfduid
         schema:
@@ -457,7 +457,7 @@ paths:
                       url: https://swapi.co/api/planets/21/
                     items:
                       oneOf:
-                        properties:
+                      - properties:
                           climate:
                             type: string
                           created:
@@ -469,7 +469,7 @@ paths:
                           films:
                             items:
                               oneOf:
-                                type: string
+                              - type: string
                             type: array
                           gravity:
                             type: string
@@ -482,7 +482,7 @@ paths:
                           residents:
                             items:
                               oneOf:
-                                type: string
+                              - type: string
                             type: array
                           rotation_period:
                             type: string
@@ -496,231 +496,38 @@ paths:
                     type: array
                 type: object
           description: Get this from docstring
-    responses:
-      '200':
+    post:
+      parameters:
+      - example: application/json
+        in: header
+        name: Content-Type
+        schema:
+          type: string
+      - example: d9542957261861ce3d8c6befcc0203d3f1552759667
+        in: cookie
+        name: __cfduid
+        schema:
+          type: string
+      requestBody:
         content:
           application/json:
             schema:
               properties:
-                count:
-                  example: 61
+                page:
+                  example: 3
                   type: integer
-                next:
-                  example: https://swapi.co/api/planets/?page=4
-                  type: string
-                previous:
-                  example: https://swapi.co/api/planets/?page=2
-                  type: string
-                results:
-                  example:
-                  - climate: temperate
-                    created: '2014-12-10T16:49:12.453000Z'
-                    diameter: '11000'
-                    edited: '2014-12-20T20:58:18.456000Z'
-                    films: []
-                    gravity: 1 standard
-                    name: Corellia
-                    orbital_period: '329'
-                    population: '3000000000'
-                    residents:
-                    - https://swapi.co/api/people/14/
-                    - https://swapi.co/api/people/18/
-                    rotation_period: '25'
-                    surface_water: '70'
-                    terrain: plains, urban, hills, forests
-                    url: https://swapi.co/api/planets/22/
-                  - climate: hot
-                    created: '2014-12-10T17:03:28.110000Z'
-                    diameter: '7549'
-                    edited: '2014-12-20T20:58:18.458000Z'
-                    films: []
-                    gravity: 1 standard
-                    name: Rodia
-                    orbital_period: '305'
-                    population: '1300000000'
-                    residents:
-                    - https://swapi.co/api/people/15/
-                    rotation_period: '29'
-                    surface_water: '60'
-                    terrain: jungles, oceans, urban, swamps
-                    url: https://swapi.co/api/planets/23/
-                  - climate: temperate
-                    created: '2014-12-10T17:11:29.452000Z'
-                    diameter: '12150'
-                    edited: '2014-12-20T20:58:18.460000Z'
-                    films: []
-                    gravity: 1 standard
-                    name: Nal Hutta
-                    orbital_period: '413'
-                    population: '7000000000'
-                    residents:
-                    - https://swapi.co/api/people/16/
-                    rotation_period: '87'
-                    surface_water: unknown
-                    terrain: urban, oceans, swamps, bogs
-                    url: https://swapi.co/api/planets/24/
-                  - climate: temperate
-                    created: '2014-12-10T17:23:29.896000Z'
-                    diameter: '9830'
-                    edited: '2014-12-20T20:58:18.461000Z'
-                    films: []
-                    gravity: 1 standard
-                    name: Dantooine
-                    orbital_period: '378'
-                    population: '1000'
-                    residents: []
-                    rotation_period: '25'
-                    surface_water: unknown
-                    terrain: oceans, savannas, mountains, grasslands
-                    url: https://swapi.co/api/planets/25/
-                  - climate: temperate
-                    created: '2014-12-12T11:16:55.078000Z'
-                    diameter: '6400'
-                    edited: '2014-12-20T20:58:18.463000Z'
-                    films: []
-                    gravity: unknown
-                    name: Bestine IV
-                    orbital_period: '680'
-                    population: '62000000'
-                    residents:
-                    - https://swapi.co/api/people/19/
-                    rotation_period: '26'
-                    surface_water: '98'
-                    terrain: rocky islands, oceans
-                    url: https://swapi.co/api/planets/26/
-                  - climate: temperate
-                    created: '2014-12-15T12:23:41.661000Z'
-                    diameter: '14050'
-                    edited: '2014-12-20T20:58:18.464000Z'
-                    films:
-                    - https://swapi.co/api/films/2/
-                    gravity: 1 standard
-                    name: Ord Mantell
-                    orbital_period: '334'
-                    population: '4000000000'
-                    residents: []
-                    rotation_period: '26'
-                    surface_water: '10'
-                    terrain: plains, seas, mesas
-                    url: https://swapi.co/api/planets/27/
-                  - climate: unknown
-                    created: '2014-12-15T12:25:59.569000Z'
-                    diameter: '0'
-                    edited: '2014-12-20T20:58:18.466000Z'
-                    films: []
-                    gravity: unknown
-                    name: unknown
-                    orbital_period: '0'
-                    population: unknown
-                    residents:
-                    - https://swapi.co/api/people/20/
-                    - https://swapi.co/api/people/23/
-                    - https://swapi.co/api/people/29/
-                    - https://swapi.co/api/people/32/
-                    - https://swapi.co/api/people/75/
-                    - https://swapi.co/api/people/84/
-                    - https://swapi.co/api/people/85/
-                    - https://swapi.co/api/people/86/
-                    - https://swapi.co/api/people/87/
-                    - https://swapi.co/api/people/88/
-                    rotation_period: '0'
-                    surface_water: unknown
-                    terrain: unknown
-                    url: https://swapi.co/api/planets/28/
-                  - climate: arid
-                    created: '2014-12-15T12:53:47.695000Z'
-                    diameter: '0'
-                    edited: '2014-12-20T20:58:18.468000Z'
-                    films: []
-                    gravity: 0.62 standard
-                    name: Trandosha
-                    orbital_period: '371'
-                    population: '42000000'
-                    residents:
-                    - https://swapi.co/api/people/24/
-                    rotation_period: '25'
-                    surface_water: unknown
-                    terrain: mountains, seas, grasslands, deserts
-                    url: https://swapi.co/api/planets/29/
-                  - climate: arid
-                    created: '2014-12-15T12:56:31.121000Z'
-                    diameter: '0'
-                    edited: '2014-12-20T20:58:18.469000Z'
-                    films: []
-                    gravity: 1 standard
-                    name: Socorro
-                    orbital_period: '326'
-                    population: '300000000'
-                    residents:
-                    - https://swapi.co/api/people/25/
-                    rotation_period: '20'
-                    surface_water: unknown
-                    terrain: deserts, mountains
-                    url: https://swapi.co/api/planets/30/
-                  - climate: temperate
-                    created: '2014-12-18T11:07:01.792000Z'
-                    diameter: '11030'
-                    edited: '2014-12-20T20:58:18.471000Z'
-                    films: []
-                    gravity: '1'
-                    name: Mon Cala
-                    orbital_period: '398'
-                    population: '27000000000'
-                    residents:
-                    - https://swapi.co/api/people/27/
-                    rotation_period: '21'
-                    surface_water: '100'
-                    terrain: oceans, reefs, islands
-                    url: https://swapi.co/api/planets/31/
-                  items:
-                    oneOf:
-                      properties:
-                        climate:
-                          type: string
-                        created:
-                          type: string
-                        diameter:
-                          type: string
-                        edited:
-                          type: string
-                        films:
-                          items: {}
-                          type: array
-                        gravity:
-                          type: string
-                        name:
-                          type: string
-                        orbital_period:
-                          type: string
-                        population:
-                          type: string
-                        residents:
-                          items:
-                            oneOf:
-                              type: string
-                          type: array
-                        rotation_period:
-                          type: string
-                        surface_water:
-                          type: string
-                        terrain:
-                          type: string
-                        url:
-                          type: string
-                      type: object
-                  type: array
               type: object
-        description: Get this from docstring
-      '405':
-        content:
-          application/json:
-            schema:
-              properties:
-                detail:
-                  example: Method 'POST' not allowed.
-                  type: string
-              type: object
-        description: Get this from docstring
+      responses:
+        '405':
+          content:
+            application/json:
+              schema:
+                properties:
+                  detail:
+                    example: Method 'POST' not allowed.
+                    type: string
+                type: object
+          description: Get this from docstring
 servers:
-- description: null
+- description: ''
   url: https://swapi.co
