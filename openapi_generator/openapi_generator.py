@@ -105,8 +105,14 @@ class OpenapiGenerator():
         if example:
             props['example'] = item
         if OpenapiGenerator.types_map[item.__class__.__name__] == "array":
-            if len(item) > 0:
-                props['items'] = {"oneOf": [OpenapiGenerator._get_props(item[0])]}
+            properties = []
+            for i in item:
+                i_type = OpenapiGenerator.types_map[i.__class__.__name__]
+                if i_type not in [x['type'] for x in properties]:
+                    properties.append(OpenapiGenerator._get_props(i))
+
+            if len(properties) > 0:
+                props['items'] = {"oneOf": properties}
             else:
                 props['items'] = {}
         if OpenapiGenerator.types_map[item.__class__.__name__] == "object":
