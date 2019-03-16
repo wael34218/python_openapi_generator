@@ -168,7 +168,8 @@ class OpenapiGenerator():
         status = "{}".format(response.status_code)
         return {
             status: {
-                'description': 'Get this from docstring',
+                # TODO: pass description
+                'description': '',
                 'content': {
                     response.headers['Content-Type']: {
                         'schema': {
