@@ -9,7 +9,8 @@ class OpenapiGenerator():
                  "float": "number",
                  "str": "string",
                  "list": "array",
-                 "dict": "object"}
+                 "dict": "object",
+                 "NoneType": "string"}
 
     def __init__(self, title, description, version, server, server_description=""):
         """
@@ -101,10 +102,11 @@ class OpenapiGenerator():
         Returns:
             props (dict): Object properties that describes item
         """
-        props = {'type': OpenapiGenerator.types_map[item.__class__.__name__]}
+        item_type = OpenapiGenerator.types_map[item.__class__.__name__]
+        props = {'type': item_type}
         if example:
             props['example'] = item
-        if OpenapiGenerator.types_map[item.__class__.__name__] == "array":
+        if item_type == "array":
             properties = []
             for i in item:
                 i_type = OpenapiGenerator.types_map[i.__class__.__name__]
@@ -115,7 +117,7 @@ class OpenapiGenerator():
                 props['items'] = {"oneOf": properties}
             else:
                 props['items'] = {}
-        if OpenapiGenerator.types_map[item.__class__.__name__] == "object":
+        if item_type == "object":
             props['properties'] = {k: OpenapiGenerator._get_props(v) for k, v in item.items()}
         return props
 
