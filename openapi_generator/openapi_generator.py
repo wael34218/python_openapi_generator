@@ -124,13 +124,13 @@ class OpenapiGenerator():
     @staticmethod
     def _get_request_body(response):
         """
-
+        Structure o request object that is compatible with OpenAPI documentation
 
         Parameters:
             response (Response): requests Response object.
 
         Returns:
-            request_body (dict): Object properties that describes the response
+            request_body (dict): Object properties that describes the request
         """
         # TODO: Handle xml, plain text and other formats
         request_body = {}
