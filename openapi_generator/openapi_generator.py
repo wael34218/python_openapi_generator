@@ -175,7 +175,7 @@ class OpenapiGenerator():
                     # TODO: pass description
                     'description': '',
                     'content': {
-                        response.headers['Content-Type']: {
+                        response.headers['Content-Type'].split(",")[0]: {
                             'schema': {
                                 'type': 'object',
                                 'properties': {
@@ -193,7 +193,7 @@ class OpenapiGenerator():
                     # TODO: pass description
                     'description': '',
                     'content': {
-                        response.headers['Content-Type']: {
+                        response.headers['Content-Type'].split(",")[0]: {
                             'schema': {
                                 'type': 'string',
                                 'format': 'binary'
