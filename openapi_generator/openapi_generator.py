@@ -168,23 +168,43 @@ class OpenapiGenerator():
 
         # TODO: Find a way to pass/get description for the response
         status = "{}".format(response.status_code)
-        return {
-            status: {
-                # TODO: pass description
-                'description': '',
-                'content': {
-                    response.headers['Content-Type']: {
-                        'schema': {
-                            'type': 'object',
-                            'properties': {
-                                k: OpenapiGenerator._get_props(v, example=True)
-                                for k, v in response.json().items()
+        response_body = {}
+        if 'application/json' in response.headers['Content-Type']:
+            response_body = {
+                status: {
+                    # TODO: pass description
+                    'description': '',
+                    'content': {
+                        response.headers['Content-Type']: {
+                            'schema': {
+                                'type': 'object',
+                                'properties': {
+                                    k: OpenapiGenerator._get_props(v, example=True)
+                                    for k, v in response.json().items()
+                                }
                             }
                         }
                     }
                 }
             }
-        }
+        elif 'audio/mp3' in response.headers['Content-Type']:
+            response_body = {
+                status: {
+                    # TODO: pass description
+                    'description': '',
+                    'content': {
+                        response.headers['Content-Type']: {
+                            'schema': {
+                                'type': 'string',
+                                'format': 'binary'
+                            }
+                        }
+                    }
+                }
+            }
+        else:
+            print("Response not supported")
+        return response_body
 
     @staticmethod
     def _get_parameters(response):
