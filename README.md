@@ -33,7 +33,3 @@ gen.export("example.yml")
 
 # Step 4: Profit
 ```
-
-## Quirks
-
-Dont depend on this, it is in its very early stage.
