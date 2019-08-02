@@ -1,7 +1,7 @@
 # Python OpenAPI (Swagger) Generator
 This library facilitates creating OpenAPI (Swagger) document for Python projects.
 
-I worked for a long time in building APIs and services, and I can tell you that one thing I got sick of hearing was "Why is your APIs are not documented?".
+I worked for a long time in building APIs and services, and I can tell you that one thing I got sick of hearing was "Why your APIs are not documented?".
 I searched long and hard for a library that generates documentation without me going back and forth editing yaml/json/markdown files ... its enough that I worry about writting unit and integration tests.
 After long search I found 0 libraries that does that.
 I was wondering why nobody has yet exploited this gap in a very lucrative market, wonder no longer. Help is at hand.
