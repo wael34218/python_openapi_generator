@@ -22,11 +22,11 @@ import requests
 gen = OpenapiGenerator("Title", "This is a testing description", "v0.0.1", server="https://swapi.co/")
 
 # Step 2: Add all responses
-response = requests.get("https://swapi.co/api/planets/", params={"page": 2}, description="Retrieving planets")
-gen.add_response(response)
+response = requests.get("https://swapi.co/api/planets/", params={"page": 2})
+gen.add_response(response, description="Retrieving planets")
 
 response = requests.get("https://swapi.co/api/people/", params={"page": 3}, description="Retrieving people")
-gen.add_response(response)
+gen.add_response(response, description="Retrieving people")
 
 # Step 3:Export
 gen.export("example.yml")
