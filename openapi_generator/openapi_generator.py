@@ -79,15 +79,21 @@ class OpenapiGenerator():
             self.paths[parsed_url.path] = {method: path_object}
         self.configs["paths"] = self.paths
 
-    def export(self, filename):
+    def export(self, filename, extension="json"):
         """
         Export configuration into a yaml OpenAPI format
 
         Parameters:
             filename (str): Output file path.
         """
-        with open(filename, "w") as output_file:
-            output_file.write(yaml.dump(self.configs, default_flow_style=False))
+        if extension == "json":
+            with open(filename, 'w') as output_file:
+                json.dump(self.configs, output_file)
+        elif extension == "yaml":
+            with open(filename, "w") as output_file:
+                output_file.write(yaml.dump(self.configs, default_flow_style=False))
+        else:
+            raise ValueError
 
     @staticmethod
     def _get_props(item, example=False):

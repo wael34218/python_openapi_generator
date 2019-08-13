@@ -18,6 +18,6 @@ response = requests.get("https://swapi.co/api/people/", params={"page": 3})
 gen.add_response(response)
 
 # Step 3:Export
-gen.export("example.yml")
+gen.export("example.json", extension="json")
 
 # Step 4: Profit
