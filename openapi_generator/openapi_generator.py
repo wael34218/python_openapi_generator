@@ -12,7 +12,7 @@ class OpenapiGenerator():
                  "dict": "object",
                  "NoneType": "string"}
 
-    def __init__(self, title, description, version, server, server_description=""):
+    def __init__(self, title, description, version, server="", server_description=""):
         """
         Initialize the OpenAPI Generator
 
@@ -20,17 +20,30 @@ class OpenapiGenerator():
             title (str): Title of the API documentation
             description (str): A brief description about the entire service (API application)
             version (str): Version of application
-            server (str): Server URL with root path
+            server (str): Server URL with root path, default: ""
             server_description (str): Description of the server staging/production, default: ""
         """
         self.configs = {
             "openapi": "3.0.1",
             "info": {"title": title, "description": description, "version": version},
-            "servers": [
-                {"url": server, "description": server_description}
-            ]
+            "servers": []
         }
         self.paths = {}
+        if server:
+            self.add_server(server, server_description)
+
+    def add_server(self, server, server_description=""):
+        """
+        Add server to the API Documentation
+
+        Parameters:
+            server (str): Server URL with root path
+            server_description (str): Description of the server staging/production, default: ""
+        """
+        server_list = [s["url"] for s in self.configs["servers"]]
+        if server not in server_list:
+            self.configs["servers"].append({
+                "url": server, "description": server_description})
 
     def add_response(self, response, description=""):
         """
@@ -78,6 +91,11 @@ class OpenapiGenerator():
         else:
             self.paths[parsed_url.path] = {method: path_object}
         self.configs["paths"] = self.paths
+
+        # Add server to the server list
+        server = "{}://{}".format(urllib.parse.urlparse(response.request.url).scheme,
+                                  urllib.parse.urlparse(response.request.url).netloc)
+        self.add_server(server)
 
     def export(self, filename, extension="json"):
         """
