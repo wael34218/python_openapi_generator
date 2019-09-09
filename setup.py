@@ -16,6 +16,8 @@ setup(
     ],
     keywords='flask framework base class generic',
     packages=['openapi_generator'],
+    download_url='https://github.com/wael34218/python_openapi_generator/archive/v1.0.0.tar.gz',
+    url='https://github.com/wael34218/python_openapi_generator',
     install_requires=[
         'pyyaml',
         'openapi-spec-validator',
