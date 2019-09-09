@@ -2,21 +2,20 @@ from setuptools import setup, find_packages
 
 setup(
     name='openapi_generator',
-    version='1.0.0',
+    version='1.0.1',
     description="A library to generate OpenAPI documentation from requests",
     author='Wael Farhan',
     author_email='wael34218@gmail.com',
+    python_requires='>=3.5',
 
     classifiers=[
-        'Development Status :: Alpha',
-        'Environment :: Console',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3.5',
-        'Topic :: Software Development :: Libraries :: Application Frameworks',
+        "License :: OSI Approved :: MIT License",
     ],
     keywords='flask framework base class generic',
     packages=['openapi_generator'],
-    download_url='https://github.com/wael34218/python_openapi_generator/archive/v1.0.0.tar.gz',
+    download_url='https://github.com/wael34218/python_openapi_generator/archive/v1.0.1.tar.gz',
     url='https://github.com/wael34218/python_openapi_generator',
     install_requires=[
         'pyyaml',
