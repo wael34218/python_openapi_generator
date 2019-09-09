@@ -30,8 +30,7 @@ gen.add_response(response, description="Retrieving people")
 
 # Step 3:Export
 gen.export("example.yml", extension="yaml")
-
-Also can set the extension to `json`
+# Also can set the extension to `json`
 
 # Step 4: Profit
 ```
