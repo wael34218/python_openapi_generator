@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='openapi_generator',
-    version='0.0.1',
+    version='1.0.0',
     description="A library to generate OpenAPI documentation from requests",
     author='Wael Farhan',
     author_email='wael34218@gmail.com',
