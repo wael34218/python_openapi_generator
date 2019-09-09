@@ -15,7 +15,7 @@ pip install openapi-generator
 ## Generate your API using simple script
 
 ```
-from openapi_generator.openapi_generator import OpenapiGenerator
+from openapi_generator import OpenapiGenerator
 import requests
 
 # Step 1: Create an instance of the generator
