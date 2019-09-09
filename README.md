@@ -9,7 +9,7 @@ I was wondering why nobody has yet exploited this gap in a very lucrative market
 ## Installation
 
 ```
-pip install git+git://github.com/wael34218/python_openapi_generator
+pip install openapi-generator
 ```
 
 ## Generate your API using simple script
