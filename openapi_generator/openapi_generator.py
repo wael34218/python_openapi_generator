@@ -1,6 +1,7 @@
 import yaml
 import urllib
 import json
+import warnings
 
 
 class OpenapiGenerator():
@@ -80,7 +81,30 @@ class OpenapiGenerator():
         status = "{}".format(response.status_code)
         if parsed_url.path in self.paths:
             if method in self.paths[parsed_url.path]:
-                if status not in self.paths[parsed_url.path][method]["responses"]:
+                if status in self.paths[parsed_url.path][method]["responses"]:
+                    # Remove the required option for parameters that are not needed in every request
+                    for param in self.paths[parsed_url.path][method]['parameters']:
+                        if 'required' not in param:
+                            continue
+                        found = False
+                        for new_param in path_object['parameters']:
+                            if param['name'] == new_param['name']:
+                                found = True
+                        if not found:
+                            del param['required']
+
+                    # Add parameters that did not exist in the first request
+                    for new_param in path_object['parameters']:
+                        found = False
+                        for param in self.paths[parsed_url.path][method]['parameters']:
+                            if param['name'] == new_param['name']:
+                                found = True
+
+                        if not found:
+                            del new_param['required']
+                            self.paths[parsed_url.path][method]['parameters'].append(new_param)
+
+                else:
                     status_response = path_object["responses"][status]
                     self.paths[parsed_url.path][method]["responses"][status] = status_response
             else:
@@ -227,7 +251,13 @@ class OpenapiGenerator():
                 }
             }
         else:
-            print("Response not supported")
+            response_body = {
+                status: {
+                    'description': '',
+                    'content': {}
+                }
+            }
+            warnings.warn("Response type {} not supported".format(response.headers['Content-Type']))
         return response_body
 
     @staticmethod
@@ -250,7 +280,8 @@ class OpenapiGenerator():
                 'name': k,
                 'in': param_type,
                 'schema': {'type': OpenapiGenerator.types_map[v.__class__.__name__]},
-                'example': v
+                'example': v,
+                'required': True
             }
 
         qs = urllib.parse.parse_qs(urllib.parse.urlparse(response.request.url).query)

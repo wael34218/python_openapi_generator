@@ -8,10 +8,10 @@ gen = OpenapiGenerator("Title", "This is a testing description", "0.0.1", "https
 response = requests.get("https://swapi.co/api/planets/", params={"page": 2})
 gen.add_response(response)
 
-response = requests.get("https://swapi.co/api/planets/", params={"page": 3})
+response = requests.get("https://swapi.co/api/planets/")
 gen.add_response(response)
 
-response = requests.post("https://swapi.co/api/planets/", json={"page": 3})
+response = requests.post("https://swapi.co/api/planets/", json={"page": 4})
 gen.add_response(response)
 
 response = requests.get("https://swapi.co/api/people/", params={"page": 3})
