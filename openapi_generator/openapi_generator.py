@@ -83,22 +83,24 @@ class OpenapiGenerator():
             if method in self.paths[parsed_url.path]:
                 if status in self.paths[parsed_url.path][method]["responses"]:
                     # Remove the required option for parameters that are not needed in every request
-                    for param in self.paths[parsed_url.path][method]['parameters']:
-                        if 'required' not in param:
-                            continue
-                        found = False
-                        for new_param in path_object['parameters']:
-                            if param['name'] == new_param['name']:
-                                found = True
-                        if not found:
-                            del param['required']
+                    if 'parameters' in self.paths[parsed_url.path][method]:
+                        for param in self.paths[parsed_url.path][method]['parameters']:
+                            if 'required' not in param:
+                                continue
+                            found = False
+                            for new_param in path_object['parameters']:
+                                if param['name'] == new_param['name']:
+                                    found = True
+                            if not found:
+                                del param['required']
 
                     # Add parameters that did not exist in the first request
                     for new_param in path_object['parameters']:
                         found = False
-                        for param in self.paths[parsed_url.path][method]['parameters']:
-                            if param['name'] == new_param['name']:
-                                found = True
+                        if 'parameters' in self.paths[parsed_url.path][method]:
+                            for param in self.paths[parsed_url.path][method]['parameters']:
+                                if param['name'] == new_param['name']:
+                                    found = True
 
                         if not found:
                             del new_param['required']
