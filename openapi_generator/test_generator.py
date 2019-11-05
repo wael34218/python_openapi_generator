@@ -28,3 +28,21 @@ class TestOpenapiGenerator(unittest.TestCase):
             spec = json.load(f)
         errors_iterator = openapi_v3_spec_validator.iter_errors(spec)
         self.assertEqual(len(list(errors_iterator)), 0)
+
+    def test_audio_file(self):
+        gen = OpenapiGenerator("Title", "Testing description", "0.0.1",
+                               "test.audio.upload")
+        lnk = "test.audio.upload"
+        with open('test.wav', 'rb') as f:
+            aud = f.read()
+
+        response = requests.post(lnk, data=aud, headers={
+            'Content-Type': 'application/body-data;rate={};channels={}'.format(16000, 1)})
+
+        gen.add_response(response)
+        gen.export("wav.json", extension="json")
+
+        with open("wav.json") as f:
+            spec = json.load(f)
+        errors_iterator = openapi_v3_spec_validator.iter_errors(spec)
+        self.assertEqual(len(list(errors_iterator)), 0)

@@ -202,6 +202,25 @@ class OpenapiGenerator():
                 except ValueError:
                     print("invalid json passed")
 
+            else:
+                try:
+                    request_body['content'] = {
+                        response.headers['Content-Type'].split(",")[0]: {
+                            'schema': {
+                                'type': 'string',
+                                'format': 'binary',
+                            },
+                            'examples': {
+                                'sample_file': {
+                                    'summary': 'This is a sample binary file',
+                                    'value': str(response.request.body)
+                                }
+                            }
+                        }
+                    }
+                except ValueError:
+                    print("Data body is invalid")
+
         return request_body
 
     @staticmethod
