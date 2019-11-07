@@ -205,7 +205,7 @@ class OpenapiGenerator():
             else:
                 try:
                     request_body['content'] = {
-                        response.headers['Content-Type']: {
+                        response.request.headers['Content-Type']: {
                             'schema': {
                                 'type': 'string',
                                 'format': 'binary',
